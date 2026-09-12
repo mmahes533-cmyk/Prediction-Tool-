@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Result</h1>
+
+        <div class="result-box">
+            <h3>{{ clay_name }}</h3>
+            <p><strong>Estimated Shrinkage:</strong> {{ shrinkage }}%</p>
+            <p><strong>Defect Risk:</strong>
+                {% if 'High risk' in risk %}<span class="risk-high">{{ risk }}</span>
+                {% elif 'caution' in risk %}<span class="risk-caution">{{ risk }}</span>
+                {% else %}<span class="risk-low">{{ risk }}</span>
+                {% endif %}
+            </p>
+        </div>
+
+        {% if compare_name %}
+        <div class="result-box">
+            <h3>Compared with: {{ compare_name }}</h3>
+            <p><strong>Estimated Shrinkage:</strong> {{ compare_shrinkage }}%</p>
+            <p><strong>Defect Risk:</strong>
+                {% if 'High risk' in compare_risk %}<span class="risk-high">{{ compare_risk }}</span>
+                {% elif 'caution' in compare_risk %}<span class="risk-caution">{{ compare_risk }}</span>
+                {% else %}<span class="risk-low">{{ compare_risk }}</span>
+                {% endif %}
+            </p>
+        </div>
+        {% endif %}
+
+        <div style="max-width: 100%;">
+            <canvas id="shrinkageChart"></canvas>
+        </div>
+
+        <div class="links">
+            <a href="/">Try Again</a> &nbsp;|&nbsp; <a href="/history">View History</a>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('shrinkageChart');
+        const tempLabels = {{ chart_temps | tojson }};
+        const userIndex = {{ user_index }};
+
+        const datasets = [{
+            label: '{{ clay_name }}',
+            data: {{ chart_shrinkages | tojson }},
+            borderColor: '#a15c38',
+            backgroundColor: 'rgba(161, 92, 56, 0.1)',
+            tension: 0.3,
+            pointRadius: tempLabels.map((t, i) => i === userIndex ? 8 : 3),
+            pointBackgroundColor: tempLabels.map((t, i) => i === userIndex ? '#b23a2f' : '#a15c38')
+        }];
+
+        {% if compare_chart_shrinkages %}
+        datasets.push({
+            label: '{{ compare_name }}',
+            data: {{ compare_chart_shrinkages | tojson }},
+            borderColor: '#4f7a45',
+            backgroundColor: 'rgba(79, 122, 69, 0.1)',
+            tension: 0.3,
+            pointRadius: 3
+        });
+        {% endif %}
+
+        new Chart(ctx, {
+            type: 'line',
+            data: { labels: tempLabels, datasets: datasets },
+            options: {
+                scales: {
+                    x: { title: { display: true, text: 'Firing Temperature (°C)' } },
+                    y: { title: { display: true, text: 'Shrinkage (%)' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

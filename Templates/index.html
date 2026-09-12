@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ceramic Firing Shrinkage Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Ceramic Firing Shrinkage & Defect Risk Predictor</h1>
+
+        <form action="/predict" method="POST">
+            <label>Clay Type:</label>
+            <select name="clay_type" required>
+                <option value="kaolin">Kaolin (China Clay)</option>
+                <option value="ball_clay">Ball Clay</option>
+                <option value="stoneware">Stoneware Clay</option>
+            </select>
+
+            <label>Compare with (optional):</label>
+            <select name="clay_type_compare">
+                <option value="none">None</option>
+                <option value="kaolin">Kaolin (China Clay)</option>
+                <option value="ball_clay">Ball Clay</option>
+                <option value="stoneware">Stoneware Clay</option>
+            </select>
+
+            <label>Water Content (%):</label>
+            <input type="number" name="water_content" step="any" required>
+
+            <label>Firing Temperature (°C):</label>
+            <input type="number" name="firing_temp" step="any" required>
+
+            <label>Heating Rate (°C/min):</label>
+            <input type="number" name="heating_rate" step="any" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <div class="links">
+            <a href="/history">View Prediction History</a>
+        </div>
+    </div>
+</body>
+</html>

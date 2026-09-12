@@ -1,0 +1,139 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f5efe6;
+    color: #3e2f26;
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    background-color: #ffffff;
+    max-width: 700px;
+    width: 100%;
+    padding: 32px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+    color: #a15c38;
+    border-bottom: 3px solid #d98e5f;
+    padding-bottom: 12px;
+    margin-top: 0;
+}
+
+h3 {
+    color: #7a4a2f;
+    margin-bottom: 4px;
+}
+
+label {
+    font-weight: 600;
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 6px;
+    color: #5c4433;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d8c9b8;
+    border-radius: 6px;
+    font-size: 15px;
+    background-color: #faf7f2;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #d98e5f;
+    background-color: #fff;
+}
+
+button {
+    margin-top: 24px;
+    padding: 12px 28px;
+    background-color: #a15c38;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #8a4a2a;
+}
+
+a {
+    color: #a15c38;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.result-box {
+    background-color: #fbf3ea;
+    border-left: 4px solid #d98e5f;
+    padding: 14px 18px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.risk-high {
+    color: #b23a2f;
+    font-weight: 700;
+}
+
+.risk-caution {
+    color: #b5842a;
+    font-weight: 700;
+}
+
+.risk-low {
+    color: #4f7a45;
+    font-weight: 700;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+}
+
+th {
+    background-color: #a15c38;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid #eadfd0;
+}
+
+tr:nth-child(even) {
+    background-color: #faf5ee;
+}
+
+ul {
+    background-color: #fdeceb;
+    border-left: 4px solid #b23a2f;
+    padding: 16px 16px 16px 36px;
+    border-radius: 6px;
+}
+
+.links {
+    margin-top: 24px;
+}

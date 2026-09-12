@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction History</h1>
+
+        {% if history %}
+        <table>
+            <tr>
+                <th>Clay Type</th>
+                <th>Water %</th>
+                <th>Firing Temp (°C)</th>
+                <th>Heating Rate</th>
+                <th>Shrinkage %</th>
+                <th>Risk</th>
+            </tr>
+            {% for h in history %}
+            <tr>
+                <td>{{ h.clay_type }}</td>
+                <td>{{ h.water_content }}</td>
+                <td>{{ h.firing_temp }}</td>
+                <td>{{ h.heating_rate }}</td>
+                <td>{{ h.shrinkage }}</td>
+                <td>{{ h.risk }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>No predictions yet.</p>
+        {% endif %}
+
+        <div class="links">
+            <a href="/">Back to Predictor</a>
+        </div>
+    </div>
+</body>
+</html>
